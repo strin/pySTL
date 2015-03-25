@@ -1,6 +1,6 @@
 pySTL
 =====
-<h3>Basic <font color="red">py</font>thon libraries by <font color="red">S</font>hi <font color="red">T</font>ian<font color="red">L</font>in</h3>
+Basic <b>py</b>thon libraries by <b>S</b>hi <b>T</b>ian<b>L</b>in
 
 Just a collection of basic python utils for reuse.
 
