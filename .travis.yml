@@ -1,9 +1,12 @@
 language: python
 
+python:
+  - "2.7"
+
 before_install:
   # setuptools
   - sudo apt-get install python-pip
-  - sudo pip install setuptools
+  - sudo pip install -r requirements.txt
 
 install:
   - sudo python setup.py install
