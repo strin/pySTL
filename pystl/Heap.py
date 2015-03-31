@@ -79,11 +79,27 @@ class HeapNode:
 
 class Heap:
     def __init__(me, key = lambda x : x):
+        """ create a heap with a given priority function
+            input: 
+                key - a function / lambda that maps an object to a real number (priority)
+                      the smaller the number, the higher the priority
+        """
         me.root = None
         me.key = lambda node : key(node.data) if node.deleted == False \
                                               else float('inf')
+        me.__size__ = 0
+
+    def size(me):
+        """ get the number of nodes in this heap 
+        """
+        return me.__size__
 
     def insert(me, data):
+        """ insert data into the heap
+            input:
+                data - the object to be inserted.
+        """
+        me.__size__ += 1
         if me.root == None:
             me.root = HeapNode(data, father=None)
             return me.root
@@ -94,6 +110,8 @@ class Heap:
             return new_node
 
     def top(me):
+        """ return the object with the smallest priority
+        """
         if me.root == None:
             raise Exception('Heap is empty.')
         return me.root.data
@@ -102,6 +120,11 @@ class Heap:
         return me.root == None
 
     def remove(me):
+        """ remove the root object.
+        """
+        if me.size() == 0:
+            raise Exception("heap is empty")
+        me.__size__ -= 1
         node = me.root
         node.deleted = True
         me.update(node)
@@ -111,6 +134,8 @@ class Heap:
             node.remove_leaf()
 
     def update(me, node):
+        """ update the relative location of node, given its priority has changed
+        """
         if not node.is_root() and me.key(node) < me.key(node.father):
             if node.father == me.root:
                 me.root = node
@@ -118,9 +143,9 @@ class Heap:
             me.update(node)
         else:
             nodes = []
-            if node.left != None and me.key(node.left) < me.key(node):
+            if node.left != None and me.key(node.left) <= me.key(node):
                 nodes += [node.left]
-            if node.right != None and me.key(node.right) < me.key(node):
+            if node.right != None and me.key(node.right) <= me.key(node):
                 nodes += [node.right]
             if len(nodes) == 1:
                 nodes[0].swap()
