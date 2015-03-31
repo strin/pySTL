@@ -149,18 +149,3 @@ class Heap:
     def __str__(me):
         return str(me.root)
 
-
-if __name__ == "__main__":
-    heap = Heap()
-    # for i in range(100):
-    #     heap.insert(random.randint(0, 100))
-    # for i in range(50):
-    #     heap.remove()
-    # heap.insert(3)
-    # heap.insert(1)
-    # heap.insert(2)
-    # heap.remove()
-    # node = heap.root
-    # node.data = 1
-    # heap.update(node)
-    print heap

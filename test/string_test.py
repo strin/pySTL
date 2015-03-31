@@ -1,5 +1,5 @@
 import unittest
-from pystl.string import *
+from pystl.String import *
 
 class StringTest(unittest.TestCase):
   def setUp(self):
